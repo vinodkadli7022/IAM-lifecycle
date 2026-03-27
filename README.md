@@ -1,4 +1,4 @@
-# 🔐 Identity Lifecycle Automation Platform (ILAP)
+# Identity Lifecycle Automation Platform (ILAP)
 
 ![Hackathon MVP Badge](https://img.shields.io/badge/Status-Hackathon_MVP_Ready-success)
 ![React](https://img.shields.io/badge/Frontend-React_18-61DAFB?logo=react&logoColor=black)
@@ -11,24 +11,24 @@ Designed to completely eliminate the manual overhead, helpdesk tickets, and huma
 
 ---
 
-## 🚀 The Problem & The Solution
+## The Problem & The Solution
 **The Problem:** In modern enterprises, provisioning a new employee (or revoking an exited employee's access) is a fragmented, week-long process involving multiple IT tickets, disorganized spreadsheets, and serious security vulnerabilities (e.g., forgotten access revocation).
 
 **Our Solution:** ILAP provides a secure, centralized **Conversational Access Chatbot** tied to a robust **Role-Based Access Control (RBAC)** Rules Engine. Managers simply instruct the Chatbot to onboard a user, and the system automatically provisions the account and maps exactly the right permissions instantaneously—logging every action for compliance.
 
 ---
 
-## ✨ Core Features
+## Core Features
 
-*   🤖 **Conversational JML Chatbot:** Intelligent workflow automation that guides managers through provisioning (Joiner), role changing (Mover), and secure offboarding (Leaver).
-*   🛡️ **Role Template Engine:** Administrators can bundle logical permissions (e.g., Jira, VPN, Email) into reusable roles like "Backend Developer" or "HR Manager".
-*   🔒 **Zero-Trust RBAC Authentication:** JWT-secured session management ensures that standard Employees can never access administrative workflows.
-*   📋 **Immutable Audit Logging:** Every single identity modification (provisions, revocations, and role alterations) is permanently recorded with timestamps and initiator IPs for SOC2/ISO compliance.
-*   🎨 **SaaS-Grade UX/UI:** Designed with a modern, high-contrast neobrutalist aesthetic, including smooth micro-animations, real-time validation, and a premium segmented login interface.
+*   **Conversational JML Chatbot:** Intelligent workflow automation that guides managers through provisioning (Joiner), role changing (Mover), and secure offboarding (Leaver).
+*   **Role Template Engine:** Administrators can bundle logical permissions (e.g., Jira, VPN, Email) into reusable roles like "Backend Developer" or "HR Manager".
+*   **Zero-Trust RBAC Authentication:** JWT-secured session management ensures that standard Employees can never access administrative workflows.
+*   **Immutable Audit Logging:** Every single identity modification (provisions, revocations, and role alterations) is permanently recorded with timestamps and initiator IPs for SOC2/ISO compliance.
+*   **SaaS-Grade UX/UI:** Designed with a modern, high-contrast neobrutalist aesthetic, including smooth micro-animations, real-time validation, and a premium segmented login interface.
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 **Frontend (Client)**
 *   **React (Vite):** High-performance component rendering.
@@ -43,7 +43,7 @@ Designed to completely eliminate the manual overhead, helpdesk tickets, and huma
 
 ---
 
-## ⚙️ Installation & Setup (Local Development)
+## Installation & Setup (Local Development)
 
 To run this application locally for demonstration, you need **Node.js** and **MongoDB Community Server** installed.
 
@@ -82,7 +82,7 @@ npm run dev
 
 ---
 
-## 🎮 How to Demo the Workflows
+## How to Demo the Workflows
 
 The platform includes seed data so you can immediately test the RBAC capabilities. 
 Navigate to `http://localhost:5173/login`:
@@ -90,6 +90,3 @@ Navigate to `http://localhost:5173/login`:
 1.  **Employee View:** Use the Quick Login toggle to log in as `alice@company.com`. Notice she is securely restricted to a view-only Dashboard displaying her permissions.
 2.  **Manager View:** Log in as `manager@company.com`. Access the **Joiner Workflow** and use the Chatbot to "Hire" a new employee. 
 3.  **Audit Validation:** After the manager successfully finishes the chatbot flow, navigate to the **Audit Logs** to see the system's automated tracking of the newly minted account.
-
----
-*Built with ❤️ for solving the identity access crisis.*
