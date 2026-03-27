@@ -115,14 +115,37 @@ const Dashboard = () => {
                             )}
                         </div>
                     </div>
-                    <div className="space-y-6">
-                        <div className="card bg-primary-50 border-none shadow-sm h-full flex flex-col justify-center items-center py-8">
-                            <h3 className="text-primary-800 font-medium mb-1">Total Employees</h3>
-                            <p className="text-4xl font-bold text-primary-600">{metrics.totalEmployees}</p>
+                    <div className="flex flex-col gap-6">
+                        <div className="bg-white rounded-xl border border-gray-100 shadow-sm relative overflow-hidden group p-6 transition-all hover:shadow-md">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-primary-500"></div>
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Employees</h3>
+                                    <p className="text-4xl font-bold text-gray-900 mt-2">{metrics.totalEmployees}</p>
+                                </div>
+                                <div className="p-3 bg-primary-50 rounded-xl text-primary-600 group-hover:scale-110 group-hover:bg-primary-100 transition-all duration-300">
+                                    <Users className="h-6 w-6" />
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-sm mt-4 text-emerald-600 font-medium">
+                                <ArrowRight className="h-4 w-4 -rotate-45" /> Active in system
+                            </div>
                         </div>
-                        <div className="card bg-amber-50 border-none shadow-sm h-full flex flex-col justify-center items-center py-8">
-                            <h3 className="text-amber-800 font-medium mb-1">Pending Requests</h3>
-                            <p className="text-4xl font-bold text-amber-600">{metrics.pendingRequests}</p>
+
+                        <div className="bg-white rounded-xl border border-gray-100 shadow-sm relative overflow-hidden group p-6 transition-all hover:shadow-md">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Pending Approvals</h3>
+                                    <p className="text-4xl font-bold text-gray-900 mt-2">{metrics.pendingRequests}</p>
+                                </div>
+                                <div className="p-3 bg-amber-50 rounded-xl text-amber-600 group-hover:scale-110 group-hover:bg-amber-100 transition-all duration-300">
+                                    <Clock className="h-6 w-6" />
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-sm mt-4 text-amber-600 font-medium">
+                                <Activity className="h-4 w-4" /> Awaiting action
+                            </div>
                         </div>
                     </div>
                 </div>

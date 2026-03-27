@@ -41,48 +41,55 @@ const Employees = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {employees.map(emp => (
-                        <div key={emp._id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-                            <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b border-gray-200 flex justify-between items-start">
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900">{emp.name}</h3>
-                                    <p className="text-sm text-gray-500 font-mono mt-0.5">{emp.employeeId}</p>
+                        <div key={emp._id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
+                            <div className="p-6 border-b border-gray-50 flex justify-between items-start">
+                                <div className="flex gap-4 items-center">
+                                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary-500 to-indigo-600 flex justify-center items-center text-white font-bold text-lg shadow-inner group-hover:scale-110 transition-transform">
+                                        {emp.name.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-gray-900 tracking-tight">{emp.name}</h3>
+                                        <p className="text-xs text-gray-500 font-mono mt-0.5">{emp.employeeId}</p>
+                                    </div>
                                 </div>
-                                <span className={`px-2 py-1 rounded-full text-xs font-medium border ${emp.accountStatus === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                                <span className={`px-2.5 py-1 rounded-md text-[10px] uppercase tracking-widest font-bold border ${emp.accountStatus === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
                                         emp.accountStatus === 'Disabled' ? 'bg-rose-50 text-rose-700 border-rose-200' :
                                             'bg-amber-50 text-amber-700 border-amber-200'
                                     }`}>
                                     {emp.accountStatus}
                                 </span>
                             </div>
-                            <div className="p-4 space-y-3">
-                                <div className="flex items-center gap-3 text-sm text-gray-600">
-                                    <Mail className="h-4 w-4 text-gray-400" />
-                                    <a href={`mailto:${emp.email}`} className="text-primary-600 hover:underline">{emp.email}</a>
-                                </div>
-                                <div className="flex items-center gap-3 text-sm text-gray-600">
-                                    <Briefcase className="h-4 w-4 text-gray-400" />
-                                    {emp.department || 'No department'}
-                                </div>
-                                <div className="flex items-center gap-3 text-sm text-gray-600">
-                                    <ShieldAlert className="h-4 w-4 text-gray-400" />
-                                    <span className="font-medium">{emp.role?.roleName || 'No Role Assigned'}</span>
+                            <div className="p-6 space-y-4">
+                                <div className="flex flex-col gap-3">
+                                    <div className="flex items-center gap-3 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+                                        <div className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:text-primary-500 group-hover:bg-primary-50 transition-colors"><Mail className="h-4 w-4" /></div>
+                                        <a href={`mailto:${emp.email}`} className="truncate hover:underline font-medium">{emp.email}</a>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+                                        <div className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:text-amber-500 group-hover:bg-amber-50 transition-colors"><Briefcase className="h-4 w-4" /></div>
+                                        <span className="font-medium">{emp.department || 'Unassigned'}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+                                        <div className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:text-emerald-500 group-hover:bg-emerald-50 transition-colors"><ShieldAlert className="h-4 w-4" /></div>
+                                        <span className="font-medium bg-gray-50 px-2.5 py-0.5 rounded text-gray-700 border border-gray-100">{emp.role?.roleName || 'No Role'}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="bg-gray-50 px-4 py-3 border-t border-gray-100">
-                                <p className="text-xs text-gray-500 font-medium mb-2">Active Permissions:</p>
-                                <div className="flex flex-wrap gap-1">
+                            <div className="bg-gray-50/50 px-6 py-4 border-t border-gray-50">
+                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Provisioned Permissions</p>
+                                <div className="flex flex-wrap gap-2">
                                     {emp.permissions?.slice(0, 3).map(p => (
-                                        <span key={p._id} className="inline-block bg-white border border-gray-200 px-2 py-1 rounded text-xs text-gray-600">
+                                        <span key={p._id} className="inline-block bg-white border border-gray-200 px-2.5 py-1 rounded-md text-xs font-medium text-gray-600 shadow-sm hover:border-primary-300 hover:text-primary-600 cursor-default transition-colors">
                                             {p.name}
                                         </span>
                                     ))}
                                     {emp.permissions?.length > 3 && (
-                                        <span className="inline-block bg-gray-200 px-2 py-1 rounded text-xs text-gray-600">
-                                            +{emp.permissions.length - 3} more
+                                        <span className="inline-block bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-200 px-2.5 py-1 rounded-md text-xs font-bold text-gray-600 shadow-sm">
+                                            +{emp.permissions.length - 3}
                                         </span>
                                     )}
                                     {(!emp.permissions || emp.permissions.length === 0) && (
-                                        <span className="text-xs text-gray-400">None</span>
+                                        <span className="text-xs text-gray-400 italic">No permissions assigned</span>
                                     )}
                                 </div>
                             </div>

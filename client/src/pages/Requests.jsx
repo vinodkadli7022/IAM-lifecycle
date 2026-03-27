@@ -65,57 +65,89 @@ const Requests = ({ type }) => {
             {loading ? (
                 <div className="text-center py-12 text-gray-500">Loading requests...</div>
             ) : requests.length === 0 ? (
-                <div className="bg-white rounded-lg shadow-sm p-12 text-center border border-gray-100">
+                <div className="bg-white rounded-xl shadow-sm p-12 text-center border border-gray-100">
                     <Clock className="h-12 w-12 text-gray-300 mx-auto mb-3" />
                     <h3 className="text-lg font-medium text-gray-900">No requests found</h3>
                     <p className="text-sm text-gray-500 mt-1">There are no {type.toLowerCase()} requests matching your criteria.</p>
                 </div>
             ) : (
-                <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
-                    <ul className="divide-y divide-gray-200">
+                <div className="space-y-4">
                         {requests.map(req => (
-                            <li key={req._id} className="p-6 hover:bg-gray-50 transition-colors">
-                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                    <div className="space-y-2 flex-1">
+                            <div key={req._id} className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all duration-300 group flex flex-col xl:flex-row xl:items-center justify-between gap-6 overflow-hidden relative">
+                                {/* Left/Main side */}
+                                <div className="flex items-start xl:items-center gap-5 flex-1">
+                                    <div className={`shrink-0 h-10 w-10 sm:h-14 sm:w-14 rounded-full flex justify-center items-center text-white font-bold sm:text-lg shadow-inner bg-gradient-to-br ${req.status === 'Approved' ? 'from-emerald-400 to-emerald-600' : req.status === 'Rejected' ? 'from-rose-400 to-rose-600' : 'from-amber-400 to-amber-600'}`}>
+                                        {req.employeeName.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div className="space-y-1.5 flex-1 w-full">
                                         <div className="flex items-center gap-2">
-                                            <StatusIcon status={req.status} />
-                                            <h3 className="text-md font-semibold text-gray-900">{req.employeeName}</h3>
-                                            <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${req.status === 'Approved' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : req.status === 'Rejected' ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-amber-50 text-amber-700 border-amber-200'}`}>
-                                                {req.status}
-                                            </span>
+                                            <h3 className="text-lg font-bold text-gray-900 leading-none tracking-tight">{req.employeeName}</h3>
+                                            <span className="text-gray-300">•</span>
+                                            <span className="text-sm font-medium text-gray-500">{type.charAt(0) + type.slice(1).toLowerCase()} Workflow</span>
                                         </div>
-                                        <div className="text-sm text-gray-600 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 mt-2">
-                                            {req.department && <p><span className="font-medium text-gray-800">Department:</span> {req.department}</p>}
-                                            {req.currentRole && <p><span className="font-medium text-gray-800">Current Role:</span> {req.currentRole.roleName}</p>}
-                                            {req.requestedRole && <p><span className="font-medium text-gray-800">Requested Role:</span> {req.requestedRole.roleName}</p>}
-                                            {req.resignationDetails && <p className="col-span-full"><span className="font-medium text-gray-800">Resignation Details:</span> {req.resignationDetails}</p>}
-                                            <p><span className="font-medium text-gray-800">Requested By:</span> {req.requestedBy?.name}</p>
-                                            <p><span className="font-medium text-gray-800">Date:</span> {new Date(req.createdAt).toLocaleDateString()}</p>
+                                        
+                                        <div className="flex flex-wrap items-center gap-2 text-sm mt-3">
+                                            {req.department && (
+                                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50 border border-gray-200 text-gray-700 font-medium shadow-sm">
+                                                    <span className="text-gray-400 font-normal">Dept:</span> {req.department}
+                                                </span>
+                                            )}
+                                            {req.currentRole && (
+                                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50 border border-gray-200 text-gray-700 font-medium shadow-sm whitespace-nowrap">
+                                                    <span className="text-gray-400 font-normal">Current:</span> {req.currentRole.roleName}
+                                                </span>
+                                            )}
+                                            {req.requestedRole && (
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-primary-50 border border-primary-200 text-primary-800 font-bold shadow-sm whitespace-nowrap">
+                                                    <span className="text-primary-500 font-medium">Requested Role:</span> {req.requestedRole.roleName}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {req.resignationDetails && (
+                                            <div className="mt-3">
+                                                <p className="text-sm text-rose-700 bg-rose-50/80 px-3 py-2 rounded-md border border-rose-100 inline-block shadow-sm">
+                                                    <span className="font-bold uppercase text-[10px] tracking-widest text-rose-500 block mb-0.5">Offboarding Reason</span> 
+                                                    {req.resignationDetails}
+                                                </p>
+                                            </div>
+                                        )}
+
+                                        <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-4 font-medium">
+                                            <Clock className="h-3.5 w-3.5" />
+                                            Requested by {req.requestedBy?.name} on {new Date(req.createdAt).toLocaleDateString()}
+                                            <span className="ml-2 font-mono text-[10px] text-gray-300">ID: {req._id.slice(-6)}</span>
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Right Side: Status or Actions */}
+                                <div className="flex flex-row xl:flex-col items-center xl:items-end justify-between xl:justify-center gap-4 xl:border-l border-gray-100 xl:pl-6 pt-4 xl:pt-0 mt-2 xl:mt-0 border-t xl:border-t-0">
+                                    <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border flex items-center gap-1.5 w-fit ${req.status === 'Approved' ? 'bg-emerald-50 text-emerald-700 border-emerald-200 shadow-sm' : req.status === 'Rejected' ? 'bg-rose-50 text-rose-700 border-rose-200 shadow-sm' : 'bg-amber-50 text-amber-700 border-amber-200 shadow-sm'}`}>
+                                        <StatusIcon status={req.status} /> {req.status}
+                                    </span>
 
                                     {req.status === 'Pending' && (
-                                        <div className="flex gap-3">
+                                        <div className="flex gap-2 w-full sm:w-auto">
                                             <button
                                                 onClick={() => handleAction(req._id, 'approve')}
                                                 disabled={actionLoading === req._id}
-                                                className="btn-primary bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500 whitespace-nowrap shadow-sm text-sm"
+                                                className="btn-primary py-2 px-5 shadow-sm bg-emerald-600 hover:bg-emerald-700 hover:shadow-emerald-500/20 hover:shadow-lg focus:ring-emerald-500 whitespace-nowrap text-sm flex-1 sm:flex-none transition-all"
                                             >
                                                 {actionLoading === req._id ? 'Approving...' : 'Approve'}
                                             </button>
                                             <button
                                                 onClick={() => handleAction(req._id, 'reject')}
                                                 disabled={actionLoading === req._id}
-                                                className="btn-secondary text-rose-600 border-rose-200 hover:bg-rose-50 hover:text-rose-700 focus:ring-rose-500 whitespace-nowrap shadow-sm text-sm"
+                                                className="btn-secondary py-2 px-5 shadow-sm text-rose-600 border-rose-200 bg-white hover:bg-rose-50 hover:border-rose-300 focus:ring-rose-500 whitespace-nowrap text-sm flex-1 sm:flex-none transition-all"
                                             >
-                                                Reject
+                                                Reject 
                                             </button>
                                         </div>
                                     )}
                                 </div>
-                            </li>
+                            </div>
                         ))}
-                    </ul>
                 </div>
             )}
         </div>

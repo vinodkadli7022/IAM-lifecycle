@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 const User = require('../models/User');
 const Role = require('../models/Role');
 const Permission = require('../models/Permission');
+const Request = require('../models/Request');
+const AuditLog = require('../models/AuditLog');
 
 dotenv.config({ path: '../.env' });
 
@@ -20,6 +22,8 @@ const seedDatabase = async () => {
         await User.deleteMany({});
         await Role.deleteMany({});
         await Permission.deleteMany({});
+        await Request.deleteMany({});
+        await AuditLog.deleteMany({});
 
         // 1. Create Permissions
         const permissionsData = [

@@ -56,37 +56,38 @@ const AuditLog = () => {
             {loading ? (
                 <div className="text-center py-12 text-gray-500">Loading audit trail...</div>
             ) : (
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+                            <thead className="bg-gray-50/80 backdrop-blur-sm">
                                 <tr>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timestamp</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target User</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performed By</th>
+                                    <th scope="col" className="px-4 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-b-2 border-primary-100">Timestamp</th>
+                                    <th scope="col" className="px-4 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-b-2 border-primary-100">Action Event</th>
+                                    <th scope="col" className="px-4 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-b-2 border-primary-100">Target User</th>
+                                    <th scope="col" className="px-4 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-b-2 border-primary-100 w-full">Details</th>
+                                    <th scope="col" className="px-4 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-b-2 border-primary-100">Initiator</th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
+                            <tbody className="bg-white divide-y divide-gray-100">
                                 {filteredLogs.map((log) => (
-                                    <tr key={log._id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex items-center gap-2 font-mono">
-                                            <Clock className="h-4 w-4 text-gray-400" />
+                                    <tr key={log._id} className="hover:bg-primary-50/50 transition-colors group cursor-default">
+                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center gap-2 font-mono group-hover:text-primary-600 transition-colors">
+                                            <Clock className="h-4 w-4" />
                                             {new Date(log.timestamp).toLocaleString()}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-50 text-blue-800 border border-blue-200">
-                                                {log.action}
+                                        <td className="px-4 py-4 whitespace-nowrap">
+                                            <span className={`px-2.5 py-1 inline-flex text-[11px] font-bold uppercase tracking-wider rounded-md border ${log.action.includes('APPROVED') ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : log.action.includes('REJECTED') ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-primary-50 text-primary-700 border-primary-200'}`}>
+                                                {log.action.replace(/_/g, ' ')}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        <td className="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-900 flex items-center gap-3">
+                                            <div className="h-7 w-7 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-xs text-gray-600 shadow-inner">{log.user.charAt(0).toUpperCase()}</div>
                                             {log.user}
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-gray-600 max-w-md truncate" title={log.details}>
+                                        <td className="px-4 py-4 text-sm text-gray-600 max-w-xs sm:max-w-sm xl:max-w-md truncate group-hover:text-gray-900 transition-colors" title={log.details}>
                                             {log.details}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500 font-medium font-sans">
                                             {log.performedBy}
                                         </td>
                                     </tr>
@@ -94,7 +95,10 @@ const AuditLog = () => {
                             </tbody>
                         </table>
                         {filteredLogs.length === 0 && (
-                            <div className="text-center py-8 text-gray-500 text-sm">No logs found matching your search.</div>
+                            <div className="text-center py-12">
+                                <FileText className="h-10 w-10 text-gray-300 mx-auto mb-3" />
+                                <p className="text-gray-500 font-medium">No logs found matching your search.</p>
+                            </div>
                         )}
                     </div>
                 </div>
