@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-dark-300: #cbd5e1;
+  --color-dark-400: #94a3b8;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f8fafc] text-slate-800 antialiased selection:bg-primary-200 selection:text-primary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-semibold rounded-lg text-white px-4 py-2 bg-primary-500 hover:bg-primary-600 hover:shadow-[0_4px_12px_-2px_rgba(59,130,246,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-1 justify-center font-semibold text-sm rounded-lg px-4 py-2 text-slate-700 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-sm transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-1;
+  }
+
+  .label-text {
+    @apply block text-[12px] font-bold text-slate-500 mb-1.5 uppercase tracking-wide;
+  }
+
+  .input-field {
+    @apply w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm font-medium text-slate-900 placeholder-slate-400 transition-all duration-200 outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/15 hover:border-slate-300 shadow-sm;
+  }
+
+  .card {
+    @apply bg-white rounded-xl border border-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06),_0_1px_2px_-1px_rgba(0,0,0,0.04)] p-6 transition-shadow duration-300 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08),_0_4px_8px_-2px_rgba(0,0,0,0.04)];
+  }
+}
