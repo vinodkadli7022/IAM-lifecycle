@@ -8,6 +8,17 @@ const createRequest = async (req, res) => {
     try {
         const { type, employeeName, targetUser, currentRole, requestedRole, department, resignationDetails } = req.body;
 
+        if (type === 'JOINER') {
+            const existingRequest = await Request.findOne({
+                type: 'JOINER',
+                employeeName: new RegExp(`^${employeeName}$`, 'i'),
+                status: 'Pending'
+            });
+            if (existingRequest) {
+                return res.status(400).json({ message: `A pending JOINER request already exists for ${employeeName}.` });
+            }
+        }
+
         const request = new Request({
             type,
             employeeName,
