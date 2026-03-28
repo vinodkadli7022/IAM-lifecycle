@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { CheckCircle, XCircle, Clock, AlertCircle } from 'lucide-react';
 
 const Requests = ({ type }) => {
-    const { api } = useContext(AuthContext);
+    const { api, user } = useContext(AuthContext);
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState(null);
@@ -127,7 +127,7 @@ const Requests = ({ type }) => {
                                         <StatusIcon status={req.status} /> {req.status}
                                     </span>
 
-                                    {req.status === 'Pending' && (
+                                    {req.status === 'Pending' && user?.userType === 'System Administrator' && (
                                         <div className="flex gap-2 w-full sm:w-auto">
                                             <button
                                                 onClick={() => handleAction(req._id, 'approve')}

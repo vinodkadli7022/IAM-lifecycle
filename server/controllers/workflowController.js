@@ -59,6 +59,10 @@ const getRequests = async (req, res) => {
 
 const approveRequest = async (req, res) => {
     try {
+        if (req.user.userType !== 'System Administrator') {
+            return res.status(403).json({ message: 'Execution requires System Administrator privileges. Separation of Duties enforced.' });
+        }
+
         const { id } = req.params;
         const request = await Request.findById(id).populate('requestedRole');
 
@@ -158,6 +162,10 @@ const approveRequest = async (req, res) => {
 
 const rejectRequest = async (req, res) => {
     try {
+        if (req.user.userType !== 'System Administrator') {
+            return res.status(403).json({ message: 'Execution requires System Administrator privileges. Separation of Duties enforced.' });
+        }
+
         const { id } = req.params;
         const request = await Request.findById(id);
 
