@@ -95,6 +95,12 @@ const approveRequest = async (req, res) => {
             // Provision New Employee
             const empId = 'EMP' + Math.floor(1000 + Math.random() * 9000);
             const email = `${request.employeeName.split(' ').join('.').toLowerCase()}@company.com`;
+            
+            const existingUser = await User.findOne({ email });
+            if (existingUser) {
+                return res.status(400).json({ message: `Cannot approve: A user with the email ${email} already exists. Please reject this duplicate request.` });
+            }
+
             const salt = await bcrypt.genSalt(10);
             const password = await bcrypt.hash('password123', salt);
 
