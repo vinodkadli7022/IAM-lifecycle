@@ -64,8 +64,8 @@ const Chatbot = () => {
         // Finite-state machine
         if (flow === 'joiner') {
             if (step === 0) {
-                if (userInput.trim().length < 2) {
-                    addMessage('bot', `Please provide a valid full name (at least 2 characters).`);
+                if (userInput.trim().length < 2 || !/^[A-Za-z\s\-\']+$/.test(userInput)) {
+                    addMessage('bot', `Please provide a valid full name containing only letters.`);
                     return;
                 }
                 setFormData({ ...formData, employeeName: userInput });
@@ -189,7 +189,7 @@ const Chatbot = () => {
                         <p className="text-xs text-primary-100 opacity-90">Automated IAM Provisioning</p>
                     </div>
                 </div>
-                <button onClick={() => navigate('/')} className="text-sm bg-primary-800/40 hover:bg-primary-800/60 px-3 py-1.5 rounded-md transition-colors font-medium">
+                <button onClick={() => navigate('/dashboard')} className="text-sm bg-primary-800/40 hover:bg-primary-800/60 px-3 py-1.5 rounded-md transition-colors font-medium">
                     Cancel Flow
                 </button>
             </div>

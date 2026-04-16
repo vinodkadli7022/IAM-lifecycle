@@ -8,56 +8,66 @@ const LandingPage = () => {
     <div style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
       <style>
         {`
-          .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); }
-          .logo { font-size: 18px; font-weight: 500; color: var(--color-text-primary); display: flex; align-items: center; gap: 8px; }
-          .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: #534AB7; }
-          .nav-btn { padding: 7px 18px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); font-size: 13px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-primary); }
-          .hero { padding: 72px 40px 56px; text-align: center; max-width: 720px; margin: 0 auto; }
-          .badge { display: inline-block; background: #EEEDFE; color: #3C3489; font-size: 12px; padding: 4px 12px; border-radius: 99px; margin-bottom: 20px; }
-          .hero h1 { font-size: 36px; font-weight: 500; line-height: 1.25; margin-bottom: 18px; color: var(--color-text-primary); }
-          .hero h1 span { color: #534AB7; }
-          .hero p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 32px; }
-          .cta-row { display: flex; justify-content: center; align-items: center; gap: 12px; }
-          .btn-primary { padding: 10px 28px; background: #534AB7; color: #EEEDFE; border: none; border-radius: var(--border-radius-md); font-size: 14px; cursor: pointer; font-weight: 500; }
-          .btn-ghost { padding: 10px 24px; background: transparent; color: var(--color-text-secondary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); font-size: 14px; cursor: pointer; }
-          .stats { display: flex; justify-content: center; gap: 48px; padding: 32px 40px; border-top: 0.5px solid var(--color-border-tertiary); border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+          
+          .landing-container { font-family: 'Inter', sans-serif; background: #FFFFFF; color: #111827; margin: 0; padding: 0; min-height: 100vh; }
+          * { box-sizing: border-box; }
+          .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; border-bottom: 1px solid #F3F4F6; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 50; }
+          .logo { font-size: 20px; font-weight: 700; color: #111827; display: flex; align-items: center; gap: 8px; letter-spacing: -0.02em; }
+          .logo-dot { width: 12px; height: 12px; border-radius: 50%; background: #4F46E5; }
+          .nav-btn { padding: 8px 20px; border-radius: 8px; border: 1px solid #E5E7EB; font-size: 14px; font-weight: 600; cursor: pointer; background: #FFFFFF; color: #374151; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+          .nav-btn:hover { background: #F9FAFB; border-color: #D1D5DB; }
+          .hero { padding: 96px 40px 80px; text-align: center; max-width: 800px; margin: 0 auto; }
+          .badge { display: inline-flex; align-items: center; background: #EEF2FF; color: #4F46E5; font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 9999px; margin-bottom: 24px; border: 1px solid #E0E7FF; }
+          .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #111827; letter-spacing: -0.02em; }
+          .hero h1 span { color: #4F46E5; }
+          .hero p { font-size: 18px; color: #6B7280; line-height: 1.6; margin-bottom: 40px; }
+          .cta-row { display: flex; justify-content: center; align-items: center; gap: 16px; }
+          .btn-primary { padding: 12px 32px; background: #111827; color: #FFFFFF; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+          .btn-primary:hover { background: #374151; transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+          .btn-ghost { padding: 12px 32px; background: #FFFFFF; color: #374151; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+          .btn-ghost:hover { background: #F9FAFB; border-color: #9CA3AF; }
+          .stats { display: flex; justify-content: center; gap: 64px; padding: 48px 40px; border-top: 1px solid #F3F4F6; border-bottom: 1px solid #F3F4F6; background: #F9FAFB; }
           .stat { text-align: center; }
-          .stat-num { font-size: 22px; font-weight: 500; color: #534AB7; }
-          .stat-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
-          .section { padding: 56px 40px; }
-          .section-label { font-size: 12px; color: #534AB7; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
-          .section-title { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
-          .section-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 36px; }
-          .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-          .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 20px; }
-          .card-icon { width: 36px; height: 36px; border-radius: var(--border-radius-md); display: flex; justify-content: center; align-items: center; margin-bottom: 14px; font-size: 16px; }
-          .card h3 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
-          .card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
-          .flow { display: flex; align-items: center; gap: 0; margin-top: 36px; }
-          .flow-step { flex: 1; text-align: center; padding: 20px 12px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); }
-          .flow-arrow { width: 32px; text-align: center; color: var(--color-text-secondary); font-size: 16px; flex-shrink: 0; }
-          .flow-num { width: 28px; height: 28px; border-radius: 50%; background: #EEEDFE; color: #3C3489; font-size: 13px; font-weight: 500; display: flex; justify-content: center; align-items: center; margin: 0 auto 10px; }
-          .flow-step h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
-          .flow-step p { font-size: 11px; color: var(--color-text-secondary); }
-          .jml { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
-          .jml-card { border-radius: var(--border-radius-lg); padding: 20px; }
-          .jml-card.joiner { background: #EAF3DE; border: 0.5px solid #C0DD97; }
-          .jml-card.mover { background: #EEEDFE; border: 0.5px solid #CECBF6; }
-          .jml-card.leaver { background: #FAECE7; border: 0.5px solid #F5C4B3; }
-          .jml-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-          .jml-card.joiner .jml-title { color: #27500A; }
-          .jml-card.mover .jml-title { color: #3C3489; }
-          .jml-card.leaver .jml-title { color: #712B13; }
-          .jml-desc { font-size: 12px; margin-bottom: 14px; }
-          .jml-card.joiner .jml-desc { color: #3B6D11; }
-          .jml-card.mover .jml-desc { color: #534AB7; }
-          .jml-card.leaver .jml-desc { color: #993C1D; }
-          .jml-tag { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 99px; margin: 2px; }
-          .joiner .jml-tag { background: #C0DD97; color: #27500A; }
-          .mover .jml-tag { background: #CECBF6; color: #26215C; }
-          .leaver .jml-tag { background: #F5C4B3; color: #711B13; }
-          .footer { padding: 24px 40px; border-top: 0.5px solid var(--color-border-tertiary); display: flex; justify-content: space-between; align-items: center; }
-          .footer p { font-size: 12px; color: var(--color-text-secondary); }
+          .stat-num { font-size: 36px; font-weight: 800; color: #111827; margin-bottom: 4px; }
+          .stat-label { font-size: 13px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.05em; }
+          .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+          .section-label { font-size: 13px; color: #4F46E5; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+          .section-title { font-size: 36px; font-weight: 800; margin-bottom: 16px; color: #111827; letter-spacing: -0.01em; }
+          .section-sub { font-size: 18px; color: #6B7280; margin-bottom: 48px; }
+          .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+          .card { background: #FFFFFF; border: 1px solid #F3F4F6; border-radius: 16px; padding: 32px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+          .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); border-color: #E5E7EB; }
+          .card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; font-size: 20px; }
+          .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #111827; }
+          .card p { font-size: 15px; color: #6B7280; line-height: 1.6; }
+          .flow { display: flex; align-items: flex-start; gap: 16px; margin-top: 48px; }
+          .flow-step { flex: 1; text-align: left; padding: 24px; background: #FFFFFF; border: 1px solid #F3F4F6; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: all 0.2s; }
+          .flow-step:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-color: #E5E7EB; transform: translateY(-2px); }
+          .flow-arrow { width: 32px; text-align: center; color: #9CA3AF; font-size: 20px; flex-shrink: 0; margin-top: 32px; }
+          .flow-num { width: 32px; height: 32px; border-radius: 8px; background: #F3F4F6; color: #4B5563; font-size: 14px; font-weight: 700; display: flex; justify-content: center; align-items: center; margin-bottom: 16px; border: 1px solid #E5E7EB; }
+          .flow-step h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+          .flow-step p { font-size: 14px; color: #6B7280; line-height: 1.5; }
+          .jml { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+          .jml-card { border-radius: 16px; padding: 32px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+          .jml-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
+          .jml-card.joiner { background: #F0FDF4; border: 1px solid #DCFCE7; }
+          .jml-card.mover { background: #EEF2FF; border: 1px solid #E0E7FF; }
+          .jml-card.leaver { background: #FEF2F2; border: 1px solid #FEE2E2; }
+          .jml-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+          .jml-card.joiner .jml-title { color: #166534; }
+          .jml-card.mover .jml-title { color: #3730A3; }
+          .jml-card.leaver .jml-title { color: #991B1B; }
+          .jml-desc { font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+          .jml-card.joiner .jml-desc { color: #15803D; }
+          .jml-card.mover .jml-desc { color: #4338CA; }
+          .jml-card.leaver .jml-desc { color: #B91C1C; }
+          .jml-tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin: 4px; }
+          .joiner .jml-tag { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+          .mover .jml-tag { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
+          .leaver .jml-tag { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+          .footer { padding: 32px 40px; border-top: 1px solid #F3F4F6; display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; }
+          .footer p { font-size: 14px; color: #6B7280; font-weight: 500; }
         `}
       </style>
 
