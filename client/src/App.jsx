@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import LandingPage from './pages/LandingPage';
 import Chatbot from './pages/Chatbot';
 import Requests from './pages/Requests';
 import Employees from './pages/Employees';
@@ -17,10 +18,11 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<LandingPage />} />
 
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/chatbot" element={<Chatbot />} />
 
               <Route element={<ProtectedRoute allowedRoles={['Manager', 'System Administrator']} />}>

@@ -16,7 +16,7 @@ const Login = () => {
         setError('');
         try {
             await login(identifier, password);
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed. Please try again.');
         }

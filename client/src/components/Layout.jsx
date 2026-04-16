@@ -13,7 +13,7 @@ const Layout = () => {
     };
 
     const navItems = [
-        { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+        { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
         { name: 'Joiner Requests', path: '/requests/joiner', icon: UserPlus, roles: ['Manager', 'System Administrator'] },
         { name: 'Mover Requests', path: '/requests/mover', icon: Users, roles: ['Manager', 'System Administrator'] },
         { name: 'Leaver Requests', path: '/requests/leaver', icon: Shield, roles: ['Manager', 'System Administrator'] },
@@ -76,7 +76,7 @@ const Layout = () => {
                 <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-10 shadow-sm">
                     <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
                         <h1 className="text-xl flex items-center gap-2 font-bold text-slate-800 tracking-tight">
-                            {window.location.pathname === '/' ? 'Overview Dashboard' : 'Workspace'}
+                            {window.location.pathname === '/dashboard' ? 'Overview Dashboard' : 'Workspace'}
                         </h1>
                         <div className="flex items-center gap-3">
                              <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200 shadow-sm">
