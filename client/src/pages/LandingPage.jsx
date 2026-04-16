@@ -5,162 +5,657 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
+    <div className="brutalist-container">
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
           
-          .landing-container { font-family: 'Inter', sans-serif; background: #FFFFFF; color: #111827; margin: 0; padding: 0; min-height: 100vh; }
+          .brutalist-container {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #FAFAFA;
+            color: #111111;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          
           * { box-sizing: border-box; }
-          .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; border-bottom: 1px solid #F3F4F6; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 50; }
-          .logo { font-size: 20px; font-weight: 700; color: #111827; display: flex; align-items: center; gap: 8px; letter-spacing: -0.02em; }
-          .logo-dot { width: 12px; height: 12px; border-radius: 50%; background: #4F46E5; }
-          .nav-btn { padding: 8px 20px; border-radius: 8px; border: 1px solid #E5E7EB; font-size: 14px; font-weight: 600; cursor: pointer; background: #FFFFFF; color: #374151; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-          .nav-btn:hover { background: #F9FAFB; border-color: #D1D5DB; }
-          .hero { padding: 96px 40px 80px; text-align: center; max-width: 800px; margin: 0 auto; }
-          .badge { display: inline-flex; align-items: center; background: #EEF2FF; color: #4F46E5; font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 9999px; margin-bottom: 24px; border: 1px solid #E0E7FF; }
-          .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #111827; letter-spacing: -0.02em; }
-          .hero h1 span { color: #4F46E5; }
-          .hero p { font-size: 18px; color: #6B7280; line-height: 1.6; margin-bottom: 40px; }
-          .cta-row { display: flex; justify-content: center; align-items: center; gap: 16px; }
-          .btn-primary { padding: 12px 32px; background: #111827; color: #FFFFFF; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-          .btn-primary:hover { background: #374151; transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-          .btn-ghost { padding: 12px 32px; background: #FFFFFF; color: #374151; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-          .btn-ghost:hover { background: #F9FAFB; border-color: #9CA3AF; }
-          .stats { display: flex; justify-content: center; gap: 64px; padding: 48px 40px; border-top: 1px solid #F3F4F6; border-bottom: 1px solid #F3F4F6; background: #F9FAFB; }
-          .stat { text-align: center; }
-          .stat-num { font-size: 36px; font-weight: 800; color: #111827; margin-bottom: 4px; }
-          .stat-label { font-size: 13px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.05em; }
-          .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
-          .section-label { font-size: 13px; color: #4F46E5; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
-          .section-title { font-size: 36px; font-weight: 800; margin-bottom: 16px; color: #111827; letter-spacing: -0.01em; }
-          .section-sub { font-size: 18px; color: #6B7280; margin-bottom: 48px; }
-          .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-          .card { background: #FFFFFF; border: 1px solid #F3F4F6; border-radius: 16px; padding: 32px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-          .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); border-color: #E5E7EB; }
-          .card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; font-size: 20px; }
-          .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #111827; }
-          .card p { font-size: 15px; color: #6B7280; line-height: 1.6; }
-          .flow { display: flex; align-items: flex-start; gap: 16px; margin-top: 48px; }
-          .flow-step { flex: 1; text-align: left; padding: 24px; background: #FFFFFF; border: 1px solid #F3F4F6; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: all 0.2s; }
-          .flow-step:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-color: #E5E7EB; transform: translateY(-2px); }
-          .flow-arrow { width: 32px; text-align: center; color: #9CA3AF; font-size: 20px; flex-shrink: 0; margin-top: 32px; }
-          .flow-num { width: 32px; height: 32px; border-radius: 8px; background: #F3F4F6; color: #4B5563; font-size: 14px; font-weight: 700; display: flex; justify-content: center; align-items: center; margin-bottom: 16px; border: 1px solid #E5E7EB; }
-          .flow-step h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #111827; }
-          .flow-step p { font-size: 14px; color: #6B7280; line-height: 1.5; }
-          .jml { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-          .jml-card { border-radius: 16px; padding: 32px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-          .jml-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
-          .jml-card.joiner { background: #F0FDF4; border: 1px solid #DCFCE7; }
-          .jml-card.mover { background: #EEF2FF; border: 1px solid #E0E7FF; }
-          .jml-card.leaver { background: #FEF2F2; border: 1px solid #FEE2E2; }
-          .jml-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-          .jml-card.joiner .jml-title { color: #166534; }
-          .jml-card.mover .jml-title { color: #3730A3; }
-          .jml-card.leaver .jml-title { color: #991B1B; }
-          .jml-desc { font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
-          .jml-card.joiner .jml-desc { color: #15803D; }
-          .jml-card.mover .jml-desc { color: #4338CA; }
-          .jml-card.leaver .jml-desc { color: #B91C1C; }
-          .jml-tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin: 4px; }
-          .joiner .jml-tag { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
-          .mover .jml-tag { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
-          .leaver .jml-tag { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
-          .footer { padding: 32px 40px; border-top: 1px solid #F3F4F6; display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; }
-          .footer p { font-size: 14px; color: #6B7280; font-weight: 500; }
+
+          /* Top Nav */
+          .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 48px;
+            background: #18181A;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+          }
+          .nav-top-left, .nav-top-right {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+          }
+          .nav-top-link {
+            color: #A1A1AA;
+            cursor: pointer;
+            transition: color 0.15s;
+          }
+          .nav-top-link:hover { color: #FFFFFF; }
+          .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          }
+          .logo-accent { color: #EF4444; }
+
+          /* Sub Nav */
+          .nav-sub {
+            padding: 12px 48px;
+            background: #27272A;
+            color: #A1A1AA;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-align: center;
+          }
+
+          /* Hero Section */
+          .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            padding: 80px 48px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+            align-items: flex-start;
+          }
+          
+          .hero-left {
+            max-width: 600px;
+          }
+          .hero-pretitle {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #52525B;
+            margin-bottom: 24px;
+          }
+          .hero h1 {
+            font-size: 56px;
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            color: #111111;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+          }
+          .hero p {
+            font-size: 16px;
+            color: #52525B;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            max-width: 480px;
+          }
+          .hero-cta {
+            display: flex;
+            gap: 16px;
+          }
+          .btn-solid {
+            padding: 16px 32px;
+            background: #111111;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid #111111;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .btn-solid:hover {
+            background: #27272A;
+            border-color: #27272A;
+          }
+          .btn-outline {
+            padding: 16px 32px;
+            background: #FFFFFF;
+            color: #111111;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid #E5E5E5;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .btn-outline:hover {
+            border-color: #111111;
+          }
+
+          /* Hero Right - Terminal Box */
+          .hero-right {
+            background: #FAFAFA;
+            border: 1px solid #E5E5E5;
+            padding: 32px;
+            width: 100%;
+          }
+          .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #111111;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+          }
+          .terminal-header h3 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin: 0;
+            text-transform: uppercase;
+          }
+          .terminal-version {
+            font-size: 24px;
+            font-weight: 400;
+            color: #A1A1AA;
+          }
+          
+          .sys-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid #E5E5E5;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+          }
+          .sys-label { color: #111111; }
+          .sys-val { color: #52525B; font-family: 'Space Mono', monospace; }
+          .sys-val.online { color: #10B981; border: 1px solid #10B981; padding: 2px 8px; }
+
+          .terminal-box-label {
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #111111;
+            text-transform: uppercase;
+          }
+          .terminal-window {
+            background: #111111;
+            padding: 24px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            line-height: 1.8;
+            color: #A1A1AA;
+          }
+          .log-ts { color: #71717A; }
+          .log-sys { color: #EF4444; }
+          .log-auth { color: #F59E0B; }
+          .log-exec { color: #3B82F6; }
+          .log-audit { color: #10B981; }
+          .log-msg { color: #10B981; }
+          .log-msg-2 { color: #A1A1AA; }
+          .log-hash { color: #059669; }
+
+          /* Stats Grid */
+          .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+          }
+          .stat-cell {
+            padding: 40px 48px;
+            border-right: 1px solid #E5E5E5;
+          }
+          .stat-cell:last-child {
+            border-right: none;
+          }
+          .stat-num {
+            font-size: 40px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 12px;
+          }
+          .stat-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #A1A1AA;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+          }
+
+          /* Sections General */
+          .section {
+            padding: 80px 48px;
+            background: #FAFAFA;
+            border-bottom: 1px solid #E5E5E5;
+          }
+          .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #111111;
+            margin-bottom: 48px;
+          }
+          .section-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .section-caption {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #111111;
+            text-transform: uppercase;
+          }
+          .section-header h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+          }
+          .section-link {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #111111;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          /* JML Cards */
+          .jml-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+          }
+          .jml-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            padding: 32px;
+          }
+          .jml-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px dotted #E5E5E5;
+            margin-bottom: 24px;
+          }
+          .jml-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+          }
+          .jml-card-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #A1A1AA;
+          }
+          .jml-card p {
+            font-size: 14px;
+            color: #52525B;
+            line-height: 1.6;
+            min-height: 80px;
+            margin-bottom: 32px;
+          }
+          .jml-targets-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #A1A1AA;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+          }
+          .jml-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+          .mono-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            padding: 4px 8px;
+            border: 1px solid #E5E5E5;
+            color: #52525B;
+            background: #FAFAFA;
+          }
+          .mono-tag.danger {
+            color: #EF4444;
+            border-color: #F87171;
+          }
+
+          /* Flow Steps */
+          .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-top: 64px;
+          }
+          .flow-line {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #E5E5E5;
+            z-index: 1;
+          }
+          .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            width: 180px;
+            background: #FAFAFA; /* to cover the line */
+          }
+          .flow-box {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FFFFFF;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 24px;
+          }
+          .flow-step h4 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #111111;
+          }
+          .flow-step p {
+            font-size: 12px;
+            color: #52525B;
+            line-height: 1.5;
+          }
+
+          /* Specifications Grid */
+          .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid #E5E5E5;
+            background: #FFFFFF;
+          }
+          .spec-cell {
+            padding: 40px;
+            border-right: 1px solid #E5E5E5;
+            border-bottom: 1px solid #E5E5E5;
+          }
+          .spec-cell:nth-child(3n) { border-right: none; }
+          .spec-cell:nth-last-child(-n+3) { border-bottom: none; }
+          
+          .spec-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            color: #A1A1AA;
+          }
+          .spec-icon {
+            font-size: 16px;
+            font-family: 'Space Mono', monospace;
+          }
+          .spec-id {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+          }
+          .spec-cell h4 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+          }
+          .spec-cell p {
+            font-size: 13px;
+            color: #52525B;
+            line-height: 1.6;
+          }
+          
+          .footer {
+            padding: 32px 48px;
+            background: #111111;
+            color: #A1A1AA;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+          }
         `}
       </style>
 
-      <nav className="nav">
-        <div className="logo"><div className="logo-dot"></div> ILAP</div>
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <span style={{ fontSize: '13px', color: 'var(--color-text-secondary)' }}>Features</span>
-          <span style={{ fontSize: '13px', color: 'var(--color-text-secondary)', marginLeft: '16px' }}>How it works</span>
-          <span style={{ fontSize: '13px', color: 'var(--color-text-secondary)', marginLeft: '16px' }}>Security</span>
-          <button className="nav-btn" style={{ marginLeft: '16px' }} onClick={() => navigate('/login')}>Get started →</button>
+      {/* Top Nav */}
+      <nav className="nav-top">
+        <div className="nav-top-left">
+          <span className="nav-top-link" onClick={() => document.getElementById('architecture-section')?.scrollIntoView({ behavior: 'smooth' })}>Features</span>
+          <span className="nav-top-link">How it works</span>
+        </div>
+        <div className="logo">
+          ILAP <span className="logo-accent">{"<"}</span>
+        </div>
+        <div className="nav-top-right">
+          {/* Emptied per user request */}
         </div>
       </nav>
+      <div className="nav-sub">
+        Platform &nbsp;/&nbsp; System Control &nbsp;/&nbsp; Identity Automation
+      </div>
 
+      {/* Hero */}
       <div className="hero">
-        <div className="badge">Identity Lifecycle Automation Platform</div>
-        <h1>Stop managing access<br />with <span>spreadsheets</span></h1>
-        <p>ILAP automates the full employee identity lifecycle — from day-one onboarding to final offboarding — using a conversational interface, role-based access control, and complete audit trails.</p>
-        <div className="cta-row">
-          <button className="btn-primary" onClick={() => navigate('/login')}>Get started free →</button>
-          <button className="btn-ghost" onClick={() => navigate('/login')}>Watch demo</button>
+        <div className="hero-left">
+          <div className="hero-pretitle">Identity Lifecycle Automation Platform</div>
+          <h1>Replace Spreadsheets With Systematic Control.</h1>
+          <p>Automate Joiner, Mover, and Leaver workflows instantly through conversational interfaces and zero-trust Role-Based Access Control.</p>
+          <div className="hero-cta">
+            <button className="btn-solid" onClick={() => navigate('/login')}>Get Started</button>
+            <button className="btn-outline" onClick={() => navigate('/login')}>Watch Demo</button>
+          </div>
+        </div>
+        <div className="hero-right">
+          <div className="terminal-header">
+            <h3>System Module</h3>
+            <span className="terminal-version">V.2.4</span>
+          </div>
+          <div className="sys-row">
+            <span className="sys-label">Module ID</span>
+            <span className="sys-val">ILP-REQ-0992</span>
+          </div>
+          <div className="sys-row">
+            <span className="sys-label">Status</span>
+            <span className="sys-val online">ONLINE</span>
+          </div>
+          <div className="terminal-box-label">Live Audit Stream</div>
+          <div className="terminal-window">
+            <div><span className="log-ts">[10:42:01]</span> <span className="log-sys">SYS</span> <span className="log-msg">REQ_PROVISION user=j.doe role=ENG_TIER2</span></div>
+            <div><span className="log-ts">[10:42:02]</span> <span className="log-auth">AUTH</span> <span className="log-msg">RBAC_CHECK policy=STRICT ... PASSED</span></div>
+            <div><span className="log-ts">[10:42:03]</span> <span className="log-exec">EXEC</span> <span className="log-msg">GRANT access=AWS_PROD, GITHUB_ORG</span></div>
+            <div><span className="log-ts">[10:42:04]</span> <span className="log-audit">AUDIT</span> <span className="log-hash">LOG_WRITTEN hash=9f86d081884c7d659a</span></div>
+          </div>
         </div>
       </div>
 
-      <div className="stats">
-        <div className="stat"><div className="stat-num">3x</div><div className="stat-label">faster onboarding</div></div>
-        <div className="stat"><div className="stat-num">100%</div><div className="stat-label">audit coverage</div></div>
-        <div className="stat"><div className="stat-num">0</div><div className="stat-label">orphaned accounts</div></div>
-        <div className="stat"><div className="stat-num">RBAC</div><div className="stat-label">zero-trust model</div></div>
+      {/* Stats */}
+      <div className="stats-grid">
+        <div className="stat-cell">
+          <div className="stat-num">3x</div>
+          <div className="stat-label">Faster Onboarding</div>
+        </div>
+        <div className="stat-cell">
+          <div className="stat-num">100%</div>
+          <div className="stat-label">Audit Coverage</div>
+        </div>
+        <div className="stat-cell">
+          <div className="stat-num">0</div>
+          <div className="stat-label">Orphaned Accounts</div>
+        </div>
+        <div className="stat-cell">
+          <div className="stat-num">Zero</div>
+          <div className="stat-label">Trust Architecture</div>
+        </div>
       </div>
 
+      {/* JML */}
       <div className="section">
-        <div style={{ textAlign: 'center', marginBottom: 0 }}>
-          <div className="section-label">Core workflows</div>
-          <div className="section-title">Joiner · Mover · Leaver</div>
-          <div className="section-sub">The three events that define every employee's access lifecycle</div>
+        <div className="section-header">
+          <div className="section-header-left">
+            <span className="section-caption">Core Capabilities</span>
+            <h2>JML Automation</h2>
+          </div>
+          <span className="section-link">Review Full Specs</span>
         </div>
-        <div className="jml">
-          <div className="jml-card joiner">
-            <div className="jml-title">Joiner</div>
-            <div className="jml-desc">New employee onboarding with automatic access provisioning</div>
-            <div><span className="jml-tag">Email access</span><span className="jml-tag">GitHub</span><span className="jml-tag">Slack</span><span className="jml-tag">Jira</span><span className="jml-tag">VPN</span></div>
+        <div className="jml-grid">
+          <div className="jml-card">
+            <div className="jml-card-header">
+              <span className="jml-card-title">01. JOINER</span>
+              <span className="jml-card-tag">J-REQ-NEW</span>
+            </div>
+            <p>Automated provisioning of Day 1 access based on HRIS triggers. Role-based templates ensure immediate productivity without over-permissioning.</p>
+            <div className="jml-targets-label">Provisioning Targets</div>
+            <div className="jml-tags">
+              <span className="mono-tag">SSO Profile</span>
+              <span className="mono-tag">Email Alias</span>
+              <span className="mono-tag">Base Slack</span>
+              <span className="mono-tag">Dept Drive</span>
+            </div>
           </div>
-          <div className="jml-card mover">
-            <div className="jml-title">Mover</div>
-            <div className="jml-desc">Role or department change with automatic permission swap</div>
-            <div><span className="jml-tag">Revoke old role</span><span className="jml-tag">Apply new role</span><span className="jml-tag">Audit logged</span></div>
+          <div className="jml-card">
+            <div className="jml-card-header">
+              <span className="jml-card-title">02. MOVER</span>
+              <span className="jml-card-tag">M-REQ-MOD</span>
+            </div>
+            <p>Dynamic access adjustment upon role change. Automatically revokes legacy permissions while seamlessly bridging access to new departmental systems.</p>
+            <div className="jml-targets-label">Modification Protocols</div>
+            <div className="jml-tags">
+              <span className="mono-tag">Grace Period: 48h</span>
+              <span className="mono-tag">Delta Sync</span>
+              <span className="mono-tag">Manager Apprv</span>
+            </div>
           </div>
-          <div className="jml-card leaver">
-            <div className="jml-title">Leaver</div>
-            <div className="jml-desc">Secure offboarding with instant access revocation</div>
-            <div><span className="jml-tag">Disable account</span><span className="jml-tag">Revoke all</span><span className="jml-tag">Zero orphans</span></div>
+          <div className="jml-card">
+            <div className="jml-card-header">
+              <span className="jml-card-title">03. LEAVER</span>
+              <span className="jml-card-tag">L-REQ-TERM</span>
+            </div>
+            <p>Instantaneous, system-wide access revocation. Transforms manual offboarding into a single-click script, eliminating security liabilities.</p>
+            <div className="jml-targets-label">Termination Actions</div>
+            <div className="jml-tags">
+              <span className="mono-tag danger">Kill Sessions</span>
+              <span className="mono-tag">Wipe Devices</span>
+              <span className="mono-tag">Archive Data</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="section" style={{ background: 'var(--color-background-secondary)', padding: '48px 40px' }}>
+      {/* Flow Steps */}
+      <div id="architecture-section" className="section" style={{ background: '#FFFFFF' }}>
         <div style={{ textAlign: 'center' }}>
-          <div className="section-label">How it works</div>
-          <div className="section-title">From chat to provisioned in seconds</div>
-          <div className="section-sub">A manager types one command. The system does the rest.</div>
+          <div className="section-caption" style={{ marginBottom: '16px' }}>Process Architecture</div>
+          <h2 style={{ fontSize: '24px', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.02em', color: '#111111' }}>Conversational Execution Flow</h2>
         </div>
-        <div className="flow">
-          <div className="flow-step"><div className="flow-num">1</div><h4>Manager chats</h4><p>Types "Joiner" in the chatbot</p></div>
-          <div className="flow-arrow">→</div>
-          <div className="flow-step"><div className="flow-num">2</div><h4>Request created</h4><p>Stored as Pending in DB</p></div>
-          <div className="flow-arrow">→</div>
-          <div className="flow-step"><div className="flow-num">3</div><h4>Admin approves</h4><p>Via requests dashboard</p></div>
-          <div className="flow-arrow">→</div>
-          <div className="flow-step"><div className="flow-num">4</div><h4>Access granted</h4><p>RBAC engine provisions</p></div>
-          <div className="flow-arrow">→</div>
-          <div className="flow-step"><div className="flow-num">5</div><h4>Audit logged</h4><p>Every action traced</p></div>
+        
+        <div className="flow-container">
+          <div className="flow-line"></div>
+          
+          <div className="flow-step" style={{ background: '#FFFFFF' }}>
+            <div className="flow-box">01</div>
+            <h4>Chat Trigger</h4>
+            <p>Manager requests access via Slack/Teams bot.</p>
+          </div>
+          <div className="flow-step" style={{ background: '#FFFFFF' }}>
+            <div className="flow-box">02</div>
+            <h4>System Parsing</h4>
+            <p>NLP translates request into strict RBAC parameters.</p>
+          </div>
+          <div className="flow-step" style={{ background: '#FFFFFF' }}>
+            <div className="flow-box">03</div>
+            <h4>Approve</h4>
+            <p>Multi-stage contextual routing for authorization.</p>
+          </div>
+          <div className="flow-step" style={{ background: '#FFFFFF' }}>
+            <div className="flow-box">04</div>
+            <h4>Provision</h4>
+            <p>API executes creation/modification instantly.</p>
+          </div>
+          <div className="flow-step" style={{ background: '#FFFFFF' }}>
+            <div className="flow-box">05</div>
+            <h4>Audit Log</h4>
+            <p>Immutable record written to compliance ledger.</p>
+          </div>
         </div>
       </div>
 
+      {/* Specs Grid */}
       <div className="section">
-        <div style={{ textAlign: 'center' }}>
-          <div className="section-label">Platform features</div>
-          <div className="section-title">Built for enterprise IAM</div>
-          <div className="section-sub">Everything you need to govern identity lifecycle at scale</div>
+        <div className="section-header">
+          <div className="section-header-left">
+            <h2>Platform Specifications</h2>
+          </div>
         </div>
-        <div className="cards">
-          <div className="card"><div className="card-icon" style={{ background: '#EEEDFE' }}>🤖</div><h3>Conversational chatbot</h3><p>Scripted JML workflows via natural chat commands — no forms, no tickets.</p></div>
-          <div className="card"><div className="card-icon" style={{ background: '#EAF3DE' }}>🔐</div><h3>Zero-trust RBAC</h3><p>JWT-secured roles. Employees see only what their role permits — nothing more.</p></div>
-          <div className="card"><div className="card-icon" style={{ background: '#E6F1FB' }}>✅</div><h3>Approval workflows</h3><p>All Joiner and Mover requests require manager sign-off before execution.</p></div>
-          <div className="card"><div className="card-icon" style={{ background: '#FAECE7' }}>📋</div><h3>Immutable audit logs</h3><p>Every provisioning event is permanently recorded with timestamps and actor details.</p></div>
-          <div className="card"><div className="card-icon" style={{ background: '#FAEEDA' }}>🗂️</div><h3>Role template engine</h3><p>Bundle permissions into reusable roles like "Backend Developer" or "HR Manager".</p></div>
-          <div className="card"><div className="card-icon" style={{ background: '#E1F5EE' }}>📊</div><h3>Live dashboard</h3><p>Real-time metrics on employees, active roles, pending requests, and access changes.</p></div>
+        <div className="specs-grid">
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">💬</span><span className="spec-id">SYS.01</span></div>
+            <h4>Conversational Bot</h4>
+            <p>Execute complex identity workflows directly from existing chat interfaces without context switching.</p>
+          </div>
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">🔒</span><span className="spec-id">SYS.02</span></div>
+            <h4>Zero-Trust RBAC</h4>
+            <p>Strict adherence to least-privilege principles. Access is leased dynamically based on verified context.</p>
+          </div>
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">✓</span><span className="spec-id">SYS.03</span></div>
+            <h4>Approval Logic</h4>
+            <p>Configurable multi-tier routing matrices based on departmental hierarchy and risk classification.</p>
+          </div>
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">📄</span><span className="spec-id">SYS.04</span></div>
+            <h4>Immutable Ledger</h4>
+            <p>Cryptographically secure, tamper-proof logs of every access request, approval, and system modification.</p>
+          </div>
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">⚙️</span><span className="spec-id">SYS.05</span></div>
+            <h4>Template Engine</h4>
+            <p>Pre-configured operational baselines. Standardize access packages by department, level, and location.</p>
+          </div>
+          <div className="spec-cell">
+            <div className="spec-header"><span className="spec-icon">📊</span><span className="spec-id">SYS.06</span></div>
+            <h4>Live Telemetry</h4>
+            <p>Real-time dashboarding of provisioning queues, security anomalies, and automated workflow metrics.</p>
+          </div>
         </div>
       </div>
 
       <div className="footer">
-        <p>ILAP · Identity Lifecycle Automation Platform · Hackathon 2026</p>
-        <button className="btn-primary" onClick={() => navigate('/login')}>Get started →</button>
+        ILAP // Identity Lifecycle Automation Platform // System Active
       </div>
     </div>
   );
