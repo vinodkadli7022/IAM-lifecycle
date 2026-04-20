@@ -17,6 +17,11 @@ const protect = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id).select('-password').populate('role').populate('permissions');
+
+        if (!req.user) {
+            return res.status(401).json({ message: 'Not authorized, user not found' });
+        }
+
         next();
     } catch (error) {
         console.error(error);
@@ -26,6 +31,10 @@ const protect = async (req, res, next) => {
 
 const restrictTo = (...roles) => {
     return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({ message: 'Not authorized' });
+        }
+
         if (!roles.includes(req.user.userType)) {
             return res.status(403).json({ message: 'You do not have permission to perform this action' });
         }
