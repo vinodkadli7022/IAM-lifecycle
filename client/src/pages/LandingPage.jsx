@@ -31,7 +31,7 @@ const LandingPage = () => {
             padding: 16px 48px;
             background: #18181A;
             color: #FFFFFF;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -62,7 +62,7 @@ const LandingPage = () => {
             padding: 12px 48px;
             background: #27272A;
             color: #A1A1AA;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -84,7 +84,7 @@ const LandingPage = () => {
             max-width: 600px;
           }
           .hero-pretitle {
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -101,7 +101,7 @@ const LandingPage = () => {
             text-transform: uppercase;
           }
           .hero p {
-            font-size: 16px;
+            font-size: 18px;
             color: #52525B;
             line-height: 1.6;
             margin-bottom: 48px;
@@ -131,7 +131,7 @@ const LandingPage = () => {
             padding: 16px 32px;
             background: #FFFFFF;
             color: #111111;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -176,7 +176,7 @@ const LandingPage = () => {
             justify-content: space-between;
             padding: 16px 0;
             border-bottom: 1px solid #E5E5E5;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -232,7 +232,7 @@ const LandingPage = () => {
             margin-bottom: 12px;
           }
           .stat-label {
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
             color: #A1A1AA;
             letter-spacing: 0.15em;
@@ -259,7 +259,7 @@ const LandingPage = () => {
             gap: 12px;
           }
           .section-caption {
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.15em;
             color: #111111;
@@ -319,7 +319,7 @@ const LandingPage = () => {
             margin-bottom: 32px;
           }
           .jml-targets-label {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.15em;
             color: #A1A1AA;

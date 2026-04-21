@@ -60,7 +60,7 @@ const Login = () => {
                 }
                 .role-btn {
                     padding: 10px;
-                    font-size: 11px;
+                    font-size: 13px;
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -86,7 +86,7 @@ const Login = () => {
                 {/* Back to Site */}
                 <button 
                   onClick={() => navigate('/')}
-                  className="relative z-10 flex items-center gap-2 text-zinc-500 hover:text-white transition-colors mono text-[10px] uppercase tracking-widest mb-24 w-fit"
+                  className="relative z-10 flex items-center gap-2 text-zinc-500 hover:text-white transition-colors mono text-[12px] uppercase tracking-widest mb-24 w-fit"
                 >
                     <ChevronLeft size={14} /> Back to specifications
                 </button>
@@ -103,7 +103,7 @@ const Login = () => {
                         SYSTEM<br />CONTROL<br />ACCESS.
                     </h2>
                     
-                    <p className="text-zinc-500 max-w-sm mono text-xs leading-relaxed mb-12">
+                    <p className="text-zinc-500 max-w-sm mono text-sm leading-relaxed mb-12">
                         // SECURE IDENTITY LIFECYCLE AUTOMATION
                         // ZERO-TRUST ARCHITECTURE V.2.4
                         // SYSTEM STATUS: LOGGED_OUT
@@ -111,11 +111,11 @@ const Login = () => {
 
                     <div className="border-t border-zinc-800 pt-8 flex gap-12">
                         <div>
-                            <div className="text-zinc-600 mono text-[9px] uppercase tracking-widest mb-1">Architecture</div>
+                            <div className="text-zinc-600 mono text-[11px] uppercase tracking-widest mb-1">Architecture</div>
                             <div className="text-zinc-300 text-sm font-medium">RBAC / 256-BIT</div>
                         </div>
                         <div>
-                            <div className="text-zinc-600 mono text-[9px] uppercase tracking-widest mb-1">Protocol</div>
+                            <div className="text-zinc-600 mono text-[11px] uppercase tracking-widest mb-1">Protocol</div>
                             <div className="text-zinc-300 text-sm font-medium">JML-AUTOMATED</div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ const Login = () => {
                     </div>
 
                     <div className="mb-12">
-                        <span className="mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4 block">Authentication Module</span>
+                        <span className="mono text-[12px] text-zinc-500 uppercase tracking-widest mb-4 block">Authentication Module</span>
                         <h3 className="text-4xl font-medium uppercase tracking-tight text-[#111111]">Welcome Back</h3>
                     </div>
 
@@ -145,7 +145,7 @@ const Login = () => {
                         
                         {/* Role Selector Header */}
                         <div className="space-y-4">
-                            <label className="mono text-[10px] text-zinc-400 uppercase tracking-widest block">System Identity Role</label>
+                            <label className="mono text-[12px] text-zinc-400 uppercase tracking-widest block">System Identity Role</label>
                             <div className="role-selector">
                                 <button 
                                     type="button" 
@@ -173,7 +173,7 @@ const Login = () => {
 
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <label htmlFor="identifier" className="mono text-[10px] text-zinc-500 uppercase tracking-widest block">
+                                <label htmlFor="identifier" className="mono text-[12px] text-zinc-500 uppercase tracking-widest block">
                                     Identity / Email
                                 </label>
                                 <input
@@ -181,7 +181,7 @@ const Login = () => {
                                     name="identifier"
                                     type="text"
                                     required
-                                    className="w-full brutalist-input px-5 py-4 text-sm focus:ring-0"
+                                    className="w-full brutalist-input px-5 py-4 text-base focus:ring-0"
                                     placeholder="demo@system.auth"
                                     value={identifier}
                                     onChange={(e) => setIdentifier(e.target.value)}
@@ -189,7 +189,7 @@ const Login = () => {
                             </div>
                             
                             <div className="space-y-2">
-                                <label htmlFor="password" className="mono text-[10px] text-zinc-500 uppercase tracking-widest block">
+                                <label htmlFor="password" className="mono text-[12px] text-zinc-500 uppercase tracking-widest block">
                                     Auth Key / Password
                                 </label>
                                 <input
@@ -197,7 +197,7 @@ const Login = () => {
                                     name="password"
                                     type="password"
                                     required
-                                    className="w-full brutalist-input px-5 py-4 text-sm focus:ring-0 mono"
+                                    className="w-full brutalist-input px-5 py-4 text-base focus:ring-0 mono"
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -215,7 +215,7 @@ const Login = () => {
                         </div>
                     </form>
 
-                    <p className="mt-12 mono text-[9px] text-zinc-400 text-center leading-relaxed">
+                    <p className="mt-12 mono text-[11px] text-zinc-400 text-center leading-relaxed">
                         // SECURE ACCESS CONTROL PROTOCOL INITIATED<br />
                         // UNAUTHORIZED ACCESS IS LOGGED AND REPORTED
                     </p>
