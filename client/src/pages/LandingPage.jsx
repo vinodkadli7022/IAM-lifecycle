@@ -455,7 +455,6 @@ const LandingPage = () => {
       <nav className="nav-top">
         <div className="nav-top-left">
           <span className="nav-top-link" onClick={() => document.getElementById('architecture-section')?.scrollIntoView({ behavior: 'smooth' })}>Features</span>
-          <span className="nav-top-link">How it works</span>
         </div>
         <div className="logo">
           ILAP <span className="logo-accent">{"<"}</span>
